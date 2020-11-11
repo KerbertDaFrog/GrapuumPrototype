@@ -8,6 +8,8 @@ public class HomingGun : MonoBehaviour
     public float speed;
     public float radius;
     public bool Detected;
+    public Rigidbody2D missile;
+    public bool MissilePresent;
 
     // Start is called before the first frame update
     void Start()
@@ -18,16 +20,51 @@ public class HomingGun : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Detected = Physics2D.OverlapCircle(Vector2.zero, radius, Player);
-        
-        if (Detected)
+        Detected = Physics2D.OverlapCircle(gameObject.transform.position, radius, Player);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
+
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * radius, Color.green);
+
+        transform.Rotate(0, 0, 50 * Time.deltaTime);
+
+        if(Physics2D.Raycast (gameObject.transform.position, Vector2.up, Mathf.Infinity, LayerMask.GetMask ("Player")))
         {
-            
+            if
+        }
+
+        if (MissilePresent == false && Detected)
+        {
+            StartCoroutine(ShootMissile());
+            Debug.Log("Detected");           
         }
         else
         {
-            Debug.Log("Detected");
+            Debug.Log("Not Detected");
         }
+    }
+
+    IEnumerator ShootMissile()
+    {
+        if (Detected)
+        {          
+            if(Detected)
+            {
+                Instantiate(missile);
+            }
+            else
+            {
+                yield return null;
+            }           
+        }
+        
+        while(MissilePresent == true)
+        {
+            
+            yield return null;
+        }
+        
+        
     }
 
     void OnDrawGizmosSelected()

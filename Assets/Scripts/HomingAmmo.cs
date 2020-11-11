@@ -35,4 +35,9 @@ public class HomingAmmo : MonoBehaviour
         //transform.Translate(Target.transform.position * speed * Time.deltaTime);
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), rotationSpeed * Time.deltaTime);
     }
+
+    void OnTriggerEnter2D()
+    {
+        Destroy(gameObject);
+    }
 }
