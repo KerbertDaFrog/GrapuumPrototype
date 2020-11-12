@@ -9,7 +9,7 @@ public class HomingGun : MonoBehaviour
     public float radius;
     public bool Detected;
     public Rigidbody2D missile;
-    public bool MissilePresent;
+    public bool MissilePresent = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class HomingGun : MonoBehaviour
 
         if(Physics2D.Raycast (gameObject.transform.position, Vector2.up, Mathf.Infinity, LayerMask.GetMask ("Player")))
         {
-            if
+            
         }
 
         if (MissilePresent == false && Detected)
@@ -46,25 +46,29 @@ public class HomingGun : MonoBehaviour
 
     IEnumerator ShootMissile()
     {
-        if (Detected)
-        {          
-            if(Detected)
-            {
-                Instantiate(missile);
-            }
-            else
-            {
-                yield return null;
-            }           
-        }
-        
-        while(MissilePresent == true)
+        if(Detected)
         {
-            
-            yield return null;
+            SpawnMissile();
         }
-        
-        
+        else
+        {
+            Debug.Log("NoSpawnedMissile");
+            yield return null;
+        }      
+    }
+
+    void SpawnMissile()
+    {
+        if(MissilePresent == false)
+        {
+            MissilePresent = true;
+            Instantiate(missile);
+            Debug.Log("SpawnMissile");
+        }
+        else
+        {
+
+        }
     }
 
     void OnDrawGizmosSelected()
