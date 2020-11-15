@@ -36,11 +36,11 @@ public class HomingGun : MonoBehaviour
         if (MissilePresent == false && Detected)
         {
             StartCoroutine(ShootMissile());
-            Debug.Log("Detected");           
+            //Debug.Log("Detected");           
         }
         else
         {
-            Debug.Log("Not Detected");
+            //Debug.Log("Not Detected");
         }
     }
 
