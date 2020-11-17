@@ -22,7 +22,6 @@ public class CharMovement : MonoBehaviour
             if (CheckifGrounded() == true)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpheight);
-
             }
         }
         if (Input.GetAxisRaw("Horizontal") != 0)
