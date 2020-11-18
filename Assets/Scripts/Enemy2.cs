@@ -7,7 +7,7 @@ public class Enemy2 : MonoBehaviour
     private Rigidbody2D rb;
     public float range;
     public bool seePlayer;
-    public LayerMask player;
+    public Transform player;
 
     void Awake()
     {
@@ -17,9 +17,13 @@ public class Enemy2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(player <= range)
+        if (player.transform.position.x <= 100)
         {
-            rb.AddForce((target.position - transform.position));
+            rb.AddForce(player.transform.position - transform.position);
+        }
+        else
+        {
+
         }
     }
 }
