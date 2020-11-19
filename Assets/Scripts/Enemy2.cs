@@ -20,11 +20,12 @@ public class Enemy2 : MonoBehaviour
     {
         if (player.transform.position.x < transform.position.x)
         {
-            rb.AddForce(player.transform.position - transform.position);
+            rb.AddForce(player.transform.position - transform.position * speed * Time.deltaTime);
             Debug.Log("Move Left");
         }
         else
         {
+            rb.AddForce(-player.transform.position - transform.position * speed * Time.deltaTime);
             Debug.Log("Move Right");
         }
     }
